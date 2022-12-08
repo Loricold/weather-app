@@ -1,0 +1,206 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "PT Mono", monospace;
+  font-weight: 400;
+  font-size: 13px;
+  color: #fff;
+  letter-spacing: 0.05em;
+  background: linear-gradient(
+      209.29deg,
+      rgba(19, 19, 51, 0.18) 17.19%,
+      rgba(40, 39, 74, 0.81) 81.74%
+    ),
+    url(../img/sky.jpg) no-repeat center top / cover;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+a:hover {
+  color: #fff;
+}
+
+ul,
+li {
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  padding: 0;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+p {
+  margin: 0;
+}
+
+.weather-app {
+  max-width: 860px;
+  border: 1px solid #000;
+  border-radius: 20px;
+  margin: 95px auto;
+  padding: 50px 70px;
+  box-shadow: 0px 0px 38px -20px rgba(255, 255, 255, 0.79);
+  background: linear-gradient(
+    209.29deg,
+    rgba(19, 19, 51, 0.18) 17.19%,
+    rgba(40, 39, 74, 0.81) 81.74%
+  );
+}
+
+.row {
+  align-items: center;
+}
+
+h1 {
+  font-size: 40px;
+  /* text-align: center; */
+  /* font-family: "Berkshire Swash", cursive; */
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 15px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+}
+
+/* Header */
+
+header {
+  margin-bottom: 60px;
+}
+
+.location {
+  display: flex;
+  justify-content: space-between;
+}
+
+.city-search {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.search-group {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.search-input {
+  border-radius: 15px 0 0 15px;
+}
+
+.btn-search {
+  border-radius: 0 15px 15px 0;
+}
+
+.current-location {
+  border: none;
+  background: transparent;
+  font-size: 25px;
+  color: #0a58ce;
+}
+
+.weather-now {
+  display: flex;
+  justify-content: space-between;
+}
+
+.weather-now img {
+  transition: 0.3s;
+}
+
+.weather-now:hover img {
+  transform: scale(1.2);
+}
+
+.temperature {
+  font-size: 48px;
+  font-family: "Roboto", sans-serif;
+  line-height: 1;
+}
+
+.units {
+  display: inline-block;
+  vertical-align: top;
+}
+/* Todays weather */
+
+section {
+  margin: 20px 0 0;
+}
+
+.card-group {
+  justify-content: space-between;
+}
+
+.card-group img {
+  max-width: 30%;
+  margin: 10px auto;
+  transition: all 200ms ease-in-out;
+}
+
+.card {
+  margin: 15px 15px 0;
+  border: none;
+  background: transparent;
+  transition: all 200ms ease-in-out;
+}
+
+.card:hover {
+  box-shadow: 0px 0px 48px -18px rgba(0, 0, 0, 0.85);
+  transform: scale(1.1);
+}
+
+.card-body {
+  text-align: center;
+  justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+}
+
+.card-title {
+  margin-bottom: 0;
+}
+
+.weather-forecast {
+  text-align: center;
+  border-bottom: 1px solid #b0b1b996;
+  padding: 10px 0;
+  transition: all 200ms ease-in-out;
+}
+
+.weather-forecast img {
+  max-width: 30%;
+}
+
+.weather-forecast:hover {
+  transform: scale(1.1);
+}
