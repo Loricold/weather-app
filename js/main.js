@@ -1,4 +1,4 @@
-// date
+// current date
 function formatDate(date) {
   let days = [
     "Sunday",
@@ -24,6 +24,9 @@ function formatDate(date) {
 let date = document.querySelector("#date");
 let currentDate = new Date();
 date.innerHTML = `${formatDate(currentDate)}`;
+
+// future date
+
 
 // search
 function searchCity(city) {
