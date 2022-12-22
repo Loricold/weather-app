@@ -27,11 +27,41 @@ date.innerHTML = `${formatDate(currentDate)}`;
 
 // future date
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let days = ["Thu", "Fri", "Sat", "Sun"];
+
+  let forecastHTML = `<div class="row">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+      <div class="col-2">
+        <div class="weather-forecast-date">${day}</div>
+        <img
+          src="http://openweathermap.org/img/wn/50d@2x.png"
+          alt=""
+          width="42"
+        />
+        <div class="weather-forecast-temperatures">
+          <span class="weather-forecast-temperature-max"> 18° </span>
+          <span class="weather-forecast-temperature-min"> 12° </span>
+        </div>
+      </div>
+  `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+  console.log(forecastHTML);
+}
+
 // search
 function searchCity(city) {
-  let apiKey = "ae16b4b3b8afca925a6accea9663928a";
+  let apiKey = "d9t043ad52b8b244o406f3dd62ad1c0c";
   let units = "metric";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(displayCurrentWeather);
 }
 
@@ -49,11 +79,10 @@ searchForm.addEventListener("submit", handleSubmit);
 function showLocation(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
-  let apiKey = "ae16b4b3b8afca925a6accea9663928a";
+  let apiKey = "d9t043ad52b8b244o406f3dd62ad1c0c";
   let units = "metric";
-  let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
-  let apiUrl = `${apiEndpoint}?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
-
+  let apiEndpoint = "https://api.shecodes.io/weather/v1/current";
+  let apiUrl = `${apiEndpoint}?lon=${lon}&lat=${lat}&key=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(displayCurrentWeather);
 }
 
@@ -69,34 +98,27 @@ function displayCurrentWeather(response) {
   let cityElement = document.querySelector("#city");
   let descriptionElement = document.querySelector("#weather-description");
   let temperatureElement = document.querySelector("#temperature");
-  let maxTempElement = document.querySelector("#max-temp");
-  let minTempElement = document.querySelector("#min-temp");
+  let tempFeelsLikeElement = document.querySelector("#feels-like-temp");
+  let pressureElement = document.querySelector("#pressure");
   let windElement = document.querySelector("#wind");
   let humidityElement = document.querySelector("#humidity");
   let iconElement = document.querySelector("#icon");
 
-  celsiusTemperature = response.data.main.temp;
+  displayForecast();
 
-  cityElement.innerHTML = response.data.name;
-  descriptionElement.innerHTML = response.data.weather[0].main;
-  temperatureElement.innerHTML = Math.round(response.data.main.temp);
-  maxTempElement.innerHTML = Math.round(response.data.main.temp_max);
-  minTempElement.innerHTML = Math.round(response.data.main.temp_min);
-  windElement.innerHTML = Math.round(response.data.wind.speed);
-  humidityElement.innerHTML = Math.round(response.data.main.humidity);
-  iconElement.setAttribute(
-    "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  celsiusTemperature = response.data.temperature.current;
+
+  cityElement.innerHTML = response.data.city;
+  descriptionElement.innerHTML = response.data.condition.description;
+  temperatureElement.innerHTML = Math.round(response.data.temperature.current);
+  tempFeelsLikeElement.innerHTML = Math.round(
+    response.data.temperature.feels_like
   );
-  iconElement.setAttribute("alt", response.data.weather[0].main);
-  console.log(response);
-
-  // let icon = document.querySelector("#icon");
-  // icon.setAttribute(
-  //   "img",
-  //   `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-  // );
-  // icon.setAttribute("alt", response.data.weather[0].description);
+  pressureElement.innerHTML = response.data.temperature.pressure;
+  windElement.innerHTML = Math.round(response.data.wind.speed);
+  humidityElement.innerHTML = response.data.temperature.humidity;
+  iconElement.setAttribute("src", response.data.condition.icon_url);
+  iconElement.setAttribute("alt", response.data.condition.description);
 }
 
 // temperature;

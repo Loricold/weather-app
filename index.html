@@ -85,101 +85,31 @@
             </div>
             <div class="col-5">
               <div class="row">
-                <div class="col-4">
-                  <h4><span id="max-temp"></span>°</h4>
-                  <p>High</p>
+                <div class="col-6">
+                  <h4><span id="feels-like-temp"></span> °</h4>
+                  <p>Feels like</p>
                 </div>
-                <div class="col-4">
+                <div class="col-6">
                   <h4><span id="wind"></span> km/h</h4>
                   <p>Wind</p>
                 </div>
               </div>
               <div class="row">
-                <div class="col-4">
-                  <h4><span id="min-temp"></span>°</h4>
-                  <p>Low</p>
+                <div class="col-6">
+                  <h4 id="pressure"></h4>
+                  <p>Pressure</p>
                 </div>
-                <div class="col-4">
-                  <h4><span id="humidity"></span> %</h4>
+                <div class="col-6">
+                  <h4 id="humidity">%</h4>
                   <p>Humidity</p>
                 </div>
               </div>
             </div>
           </div>
         </header>
-        <section class="today-forecast">
-          <h3>Todays weather</h3>
-          <div class="row">
-            <div class="card-group">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">3 am</h5>
-                  <img src="img/cloud.png" alt="" />
-                  <p class="card-text">7°</p>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">6 am</h5>
-                  <img src="img/cloud.png" alt="" />
-                  <p class="card-text">7°</p>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">9 am</h5>
-                  <img src="img/rain.png" alt="" />
-                  <p class="card-text">9°</p>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">12 am</h5>
-                  <img src="img/cloud.png" alt="" />
-                  <p class="card-text">11°</p>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">3 pm</h5>
-                  <img src="img/sun-cloud.png" alt="" />
-                  <p class="card-text">12°</p>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">6 pm</h5>
-                  <img src="img/moon-cloud.png" alt="" />
-                  <p class="card-text">9°</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
         <section class="week-forecast">
           <h3>Next 5 days</h3>
-          <div class="row weather-forecast">
-            <div class="col-2 weather-forecast-date"></div>
-            <div class="col-2">
-              <img src="" alt="" />
-            </div>
-            <div class="col-2 weather-forecast-temperatures">
-              <div class="weather-forecast-temperature-min">5°</div>
-              <span>Low</span>
-            </div>
-            <div class="col-2">
-              <div class="weather-forecast-temperature-max">12°</div>
-              <span>High</span>
-            </div>
-            <div class="col-2">
-              <div class="weather-forecast-wind">9mph</div>
-              <span>Wind</span>
-            </div>
-            <div class="col-2">
-              <div class="weather-forecast-humidity">0%</div>
-              <span>Humidity</span>
-            </div>
-          </div>
+          <div class="row weather-forecast" id="forecast"></div>
         </section>
       </div>
       <p class="open-source">
