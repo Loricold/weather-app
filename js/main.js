@@ -27,7 +27,6 @@ date.innerHTML = `${formatDate(currentDate)}`;
 
 // future date
 
-
 // search
 function searchCity(city) {
   let apiKey = "ae16b4b3b8afca925a6accea9663928a";
@@ -69,28 +68,29 @@ searchCity("Katowice");
 
 // weather
 function displayCurrentWeather(response) {
-  console.log(response);
-  document.querySelector("#city").innerHTML = response.data.name;
-  document.querySelector("#weather-description").innerHTML =
-    response.data.weather[0].main;
-  document.querySelector("#temperature").innerHTML = Math.round(
-    response.data.main.temp
-  );
-  console.log(response);
-  document.querySelector("#max-temp").innerHTML = Math.round(
-    response.data.main.temp_max
-  );
-  document.querySelector("#min-temp").innerHTML = Math.round(
-    response.data.main.temp_min
-  );
+  let cityElement = document.querySelector("#city");
+  let descriptionElement = document.querySelector("#weather-description");
+  let temperatureElement = document.querySelector("#temperature");
+  let maxTempElement = document.querySelector("#max-temp");
+  let minTempElement = document.querySelector("#min-temp");
+  let windElement = document.querySelector("#wind");
+  let humidityElement = document.querySelector("#humidity");
+  let iconElement = document.querySelector("#icon");
 
-  document.querySelector("#wind").innerHTML = Math.round(
-    response.data.wind.speed
+  cityElement.innerHTML = response.data.name;
+  descriptionElement.innerHTML = response.data.weather[0].main;
+  temperatureElement.innerHTML = Math.round(response.data.main.temp);
+  maxTempElement.innerHTML = Math.round(response.data.main.temp_max);
+  minTempElement.innerHTML = Math.round(response.data.main.temp_min);
+  windElement.innerHTML = Math.round(response.data.wind.speed);
+  humidityElement.innerHTML = Math.round(response.data.main.humidity);
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
+  iconElement.setAttribute("alt", response.data.weather[0].main);
+  console.log(response);
 
-  document.querySelector("#humidity").innerHTML = Math.round(
-    response.data.main.humidity
-  );
   // let icon = document.querySelector("#icon");
   // icon.setAttribute(
   //   "img",
