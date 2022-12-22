@@ -222,4 +222,6 @@ section {
 
 .open-source a {
   display: block;
+  color: #fff;
+  text-decoration: underline;
 }
