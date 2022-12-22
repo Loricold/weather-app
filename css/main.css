@@ -20,11 +20,11 @@ body {
 
 a {
   text-decoration: none;
-  color: #fff;
+  color: #393f5d;
 }
 
 a:hover {
-  color: #fff;
+  color: #393f5d;
 }
 
 ul,
@@ -149,6 +149,15 @@ header {
 .units {
   display: inline-block;
   vertical-align: top;
+}
+
+.active {
+  color: #fff;
+  cursor: default;
+}
+
+.active:hover {
+  color: #fff;
 }
 /* Todays weather */
 
