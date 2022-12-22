@@ -54,7 +54,14 @@ function displayForecast() {
 
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
-  console.log(forecastHTML);
+}
+
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "d9t043ad52b8b244o406f3dd62ad1c0c";
+  let units = "metric";
+  let apiURL = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=${units}`;
+  
 }
 
 // search
@@ -119,6 +126,8 @@ function displayCurrentWeather(response) {
   humidityElement.innerHTML = response.data.temperature.humidity;
   iconElement.setAttribute("src", response.data.condition.icon_url);
   iconElement.setAttribute("alt", response.data.condition.description);
+
+  getForecast(response.data.coordinates);
 }
 
 // temperature;
