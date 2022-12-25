@@ -25,43 +25,95 @@ let date = document.querySelector("#date");
 let currentDate = new Date();
 date.innerHTML = `${formatDate(currentDate)}`;
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
+}
+
 // future date
 
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data.daily);
   let forecastElement = document.querySelector("#forecast");
 
-  let days = ["Thu", "Fri", "Sat", "Sun"];
+  let forecast = response.data.daily;
 
-  let forecastHTML = `<div class="row">`;
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
-      <div class="col-2">
-        <div class="weather-forecast-date">${day}</div>
-        <img
-          src="http://openweathermap.org/img/wn/50d@2x.png"
-          alt=""
-          width="42"
-        />
+  // let forecastHTML = `<div class="row">`;
+  // forecast.forEach(function (forecastDay) {
+  //   forecastHTML =
+  //     forecastHTML +
+  //     `<div class="row weather-forecast">
+  //           <div class="col-2 weather-forecast-date">${forecastDay.time}</div>
+  //           <div class="col-2 weather-forecast-icon">
+  //             <img src="${forecastDay.condition.icon_url}" alt="${
+  //       forecastDay.condition.icon
+  //     }" />
+  //           </div>
+  //           <div class="col-2 weather-forecast-temperatures">
+  //              <span class="weather-forecast-temperature-min">${Math.round(
+  //                forecastDay.temperature.minimum
+  //              )}° </span>
+  //             Low
+  //           </div>
+  //           <div class="col-2 weather-forecast-temperatures">
+  //             <span class="weather-forecast-temperature-max">${Math.round(
+  //               forecastDay.temperature.maximum
+  //             )}° </span>
+  //             High
+  //           </div>
+  //           <div class="col-2 weather-forecast-wind">
+  //             <span class="weather-forecast-wind-speed">${Math.round(
+  //               forecastDay.wind.speed
+  //             )} mph</span>
+  //             Wind
+  //           </div>
+  //           <div class="col-2 weather-forecast-humidity">
+  //             <span class="weather-forecast-wind-speed">${Math.round(
+  //               forecastDay.temperature.humidity
+  //             )} %</span>
+  //             Humidity
+  //           </div>
+  //         </div>`;
+  // });
+
+  let forecastHTML = `<div class="row">
+  <div class="card-group">`;
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6)
+      forecastHTML =
+        forecastHTML +
+        `
+      <div class="col-2 card">
+      <div class="card-body">
+        <div class="weather-forecast-date">${formatDay(forecastDay.time)}</div>
+        <img src="${forecastDay.condition.icon_url}" alt="${
+          forecastDay.condition.icon
+        }" />
         <div class="weather-forecast-temperatures">
-          <span class="weather-forecast-temperature-max"> 18° </span>
-          <span class="weather-forecast-temperature-min"> 12° </span>
+          <span class="weather-forecast-temperature-max">${Math.round(
+            forecastDay.temperature.maximum
+          )}° </span>
+          <span class="weather-forecast-temperature-min"> ${Math.round(
+            forecastDay.temperature.minimum
+          )}° </span>
         </div>
+      </div>
       </div>
   `;
   });
 
-  forecastHTML = forecastHTML + `</div>`;
+  forecastHTML = forecastHTML + `</div> </div>`;
   forecastElement.innerHTML = forecastHTML;
 }
 
 function getForecast(coordinates) {
-  console.log(coordinates);
   let apiKey = "d9t043ad52b8b244o406f3dd62ad1c0c";
   let units = "metric";
   let apiURL = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=${units}`;
-  
+  console.log(apiURL);
+  axios.get(apiURL).then(displayForecast);
 }
 
 // search
@@ -111,7 +163,7 @@ function displayCurrentWeather(response) {
   let humidityElement = document.querySelector("#humidity");
   let iconElement = document.querySelector("#icon");
 
-  displayForecast();
+  // displayForecast();
 
   celsiusTemperature = response.data.temperature.current;
 
